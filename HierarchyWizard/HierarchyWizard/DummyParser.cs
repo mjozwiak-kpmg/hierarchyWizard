@@ -1,11 +1,10 @@
-﻿using System;
-using HierarchyWizard.Interfaces;
+﻿using HierarchyWizard.Interfaces;
 using System.Collections.Generic;
 using HierarchyWizard.enums;
 
 namespace HierarchyWizard
 {
-    internal class DummyParser : IDocumentParser
+    public class DummyParser : IDocumentParser
     {
         public DummyParser()
         {
