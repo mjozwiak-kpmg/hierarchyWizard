@@ -42,8 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classification.cs" />
+    <Compile Include="FontStyle.cs" />
+    <Compile Include="FontWeight.cs" />
+    <Compile Include="Line.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WordPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
