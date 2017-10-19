@@ -1,4 +1,4 @@
-﻿namespace HierarchyWizard
+﻿namespace HierarchyWizard.enums
 {
     public enum FontWeight
     {

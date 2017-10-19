@@ -1,13 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace HierarchyWizard
 {
-    class WordPage
+    public class WordPage
     {
         public List<Line> Lines { get; set; }
+
+        public WordPage()
+        {
+            Lines = new List<Line>();
+        }
+
+        public WordPage(List<Line> lines)
+        {
+            Lines = lines;
+        }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HierarchyWizard.Interfaces;
 
 namespace HierarchyWizard
 {
@@ -10,6 +6,8 @@ namespace HierarchyWizard
     {
         static void Main(string[] args)
         {
+            IDocumentParser pageServer = new DummyParser();
+            var pages = pageServer.GetPages();
         }
     }
 }

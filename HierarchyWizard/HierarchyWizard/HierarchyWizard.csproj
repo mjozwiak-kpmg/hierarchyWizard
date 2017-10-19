@@ -42,9 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classification.cs" />
-    <Compile Include="FontStyle.cs" />
-    <Compile Include="FontWeight.cs" />
+    <Compile Include="DummyParser.cs" />
+    <Compile Include="enums\Classification.cs" />
+    <Compile Include="enums\FontStyle.cs" />
+    <Compile Include="enums\FontWeight.cs" />
+    <Compile Include="Interfaces\IDocumentParser.cs" />
+    <Compile Include="PageBatch.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
