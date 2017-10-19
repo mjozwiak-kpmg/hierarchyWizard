@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HierarchyWizard", "Hierarch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelExporter", "ExcelExporter\ExcelExporter.csproj", "{08F20E46-AB09-4EE3-ACC7-E1E7763B7603}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordParser", "WordParser\WordParser.csproj", "{D42C1A84-F170-4EFB-89E1-67806F8ED0FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{08F20E46-AB09-4EE3-ACC7-E1E7763B7603}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08F20E46-AB09-4EE3-ACC7-E1E7763B7603}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08F20E46-AB09-4EE3-ACC7-E1E7763B7603}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D42C1A84-F170-4EFB-89E1-67806F8ED0FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D42C1A84-F170-4EFB-89E1-67806F8ED0FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D42C1A84-F170-4EFB-89E1-67806F8ED0FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D42C1A84-F170-4EFB-89E1-67806F8ED0FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
