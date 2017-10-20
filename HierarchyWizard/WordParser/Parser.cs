@@ -34,6 +34,15 @@ namespace WordParser
                     for (int j = 0; j < rows.Count; j++)
                     {
                         var row = rows[j + 1];
+                        for (int x = 0; x < row.Cells.Count; x++)
+                        {
+                            var cell = row.Cells[x + 1];
+                            var cellText = cell.Range.Text.Trim();
+                            if (string.IsNullOrEmpty(cellText) == false)
+                                pAndlRows.Add(row.Range.Text.Trim());
+                        }
+
+
                         pAndlRows.Add(row.Range.Text.Trim());
                     }
                 }
