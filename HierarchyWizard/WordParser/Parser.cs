@@ -1,23 +1,54 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Office.Interop.Word;
 
 namespace WordParser
 {
     public class Parser
     {
-        public static List<string> ParseFile(string file)
+        public static List<Line> ParseFile(string file)
         {
-            string[] profitAndLoss = new[] { "tax on profit", "financial year" };
-            string[] balanceSheet = new[] { "fixed assets", "current assets", "net assets", "profit and loss" };
+            string[] profitAndLoss = new[] { "interest", "turnover", "expenses", "expenditure", "income", "sales" };
+            string[] balanceSheet = new[] { "liabilities", "capital", "reserves", "stock", "creditors", "debtors", "share" };
 
             var app = new Microsoft.Office.Interop.Word.Application();
             object filePath = file;
             object readonlyAccess = true;
             var doc = app.Documents.Open(ref filePath, ReadOnly:readonlyAccess);
 
-            List<string> balanceSheetRows = new List<string>();
-            List<string> pAndlRows = new List<string>();
+            var balanceSheetRows = new List<Line>();
+            var pAndlRows = new List<Line>();
 
+            var profitAndLossTable = GetMostLikelyTable(doc, profitAndLoss);
+            var balanceSheetTable = GetMostLikelyTable(doc, balanceSheet);
+
+            var range = profitAndLossTable.Range;
+            var rows = profitAndLossTable.Rows;
+            var text = rows.ToString();
+
+            for (int j = 0; j < rows.Count; j++)
+            {
+                var row = rows[j + 1];
+                pAndlRows.Add(new Line(row, false));
+            }
+
+            range = balanceSheetTable.Range;
+            rows = balanceSheetTable.Rows;
+
+            for (int j = 0; j < rows.Count; j++)
+            {
+                var row = rows[j + 1];
+                balanceSheetRows.Add(new Line(row, true));
+            }
+
+            return balanceSheetRows.Concat(pAndlRows).ToList();
+        }
+
+        private static Table GetMostLikelyTable(Document doc, string[] searchWords)
+        {
+            var maxCount = 0;
+            Table currentTable = null;
             for (int i = 0; i < doc.Tables.Count; i++)
             {
                 var table = doc.Tables[i + 1];
@@ -26,41 +57,25 @@ namespace WordParser
                 if (string.IsNullOrWhiteSpace(text))
                     continue;
 
-                if (profitAndLoss.All(text.Contains))
+                var currentCount = CountNumberOfOccurrences(text, searchWords);
+
+                if (currentCount > maxCount)
                 {
-                    var range = table.Range;
-                    var rows = table.Rows;
-
-                    for (int j = 0; j < rows.Count; j++)
-                    {
-                        var row = rows[j + 1];
-                        for (int x = 0; x < row.Cells.Count; x++)
-                        {
-                            var cell = row.Cells[x + 1];
-                            var cellText = cell.Range.Text.Trim();
-                            if (string.IsNullOrEmpty(cellText) == false)
-                                pAndlRows.Add(row.Range.Text.Trim());
-                        }
-
-
-                        pAndlRows.Add(row.Range.Text.Trim());
-                    }
-                }
-
-                if (balanceSheet.All(text.Contains))
-                {
-                    var range = table.Range;
-                    var rows = table.Rows;
-
-                    for (int j = 0; j < rows.Count; j++)
-                    {
-                        var row = rows[j + 1];
-                        balanceSheetRows.Add(row.Range.Text.Trim());
-                    }
+                    maxCount = currentCount;
+                    currentTable = table;
                 }
             }
+            return currentTable;
+        }
 
-            return balanceSheetRows.Concat(pAndlRows).ToList();
+        private static int CountNumberOfOccurrences(string text, string[] searchWords)
+        {
+            var count = 0;
+            foreach(var word in searchWords)
+            {
+                if (text.Contains(word)) count += 1;
+            }
+            return count;
         }
     }
 }

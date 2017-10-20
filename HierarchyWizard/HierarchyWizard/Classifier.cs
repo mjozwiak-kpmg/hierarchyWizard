@@ -10,13 +10,13 @@ namespace HierarchyWizard
             var lines = pages.ProfitLossPage.Lines;
             foreach(var line in lines)
             {
-                line.Classification = Classification.Binding;
+                //line. = Classification.Binding;
             }
 
             lines = pages.BalanceSheetPage.Lines;
             foreach (var line in lines)
             {
-                line.Classification = Classification.Sigma;
+                //line.Classification = Classification.Sigma;
             }
         }
     }
